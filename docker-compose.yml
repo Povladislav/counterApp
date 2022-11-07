@@ -10,12 +10,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   web:
-    build: .
-    command: python3 manage.py runserver 0.0.0.0:7000
+    build:
+      context: .
+    command: python3 manage.py runserver 0.0.0.0:5000
     volumes:
       - .:/code
     ports:
-      - "7000:7000"
+      - "5000:5000"
     env_file:
       - .env.dev
     depends_on:
