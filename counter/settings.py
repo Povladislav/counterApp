@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'users.User'
 
 MY_APPS = [
     'users.apps.UsersConfig',
+    'categories.apps.CategoriesConfig'
 ]
 
 INSTALLED_APPS = [
