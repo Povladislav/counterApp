@@ -15,22 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-
-from users import urls as user_urls
-from categories import urls as categories_urls
-
 from rest_framework.routers import DefaultRouter
 
+from categories import urls as categories_urls
 from categories.views import CategoryViewSet
+from transactions.views import TransactionViewSet
+from users import urls as user_urls
 
 router = DefaultRouter()
 router.register(r'categories', CategoryViewSet)
-print(router.urls)
+router.register(r'transactions', TransactionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include(user_urls)),
     path('api/v1/', include(router.urls)),
+    path('api/v1/', include(router.urls)),
+    path('api/v1/transaction/create/', TransactionViewSet.as_view({"post": "create"})),
+    path('api/v1/category/create/', CategoryViewSet.as_view({"post": "create"})),
     path('api/v1/auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken'))
 ]

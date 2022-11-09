@@ -4,14 +4,18 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from .models import User
 from .serializers import UserSerializer
 
 
-class UserView(ListAPIView):
+class ShowProfileOfUser(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        user = request.user
+        serializer = UserSerializer(user).data
+
+        return Response(serializer)
 
 
 class RegisterView(GenericAPIView):

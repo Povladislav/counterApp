@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'users.User'
 
 MY_APPS = [
     'users.apps.UsersConfig',
+    'transactions.apps.TransactionsConfig',
     'categories.apps.CategoriesConfig'
 ]
 
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework.authtoken',
     'django.contrib.staticfiles',
-] + MY_APPS
+                 ] + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
