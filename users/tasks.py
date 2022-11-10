@@ -1,3 +1,5 @@
+import os
+
 from celery import shared_task
 from django.core.mail import send_mail
 
@@ -13,5 +15,6 @@ def add(x, y):
 def send_emails():
     users = User.objects.all()
     for i in users:
-        send_mail('your account statictics', f'Username:{i.username} curent balance:{i.current_balance}', [i.email],
+        send_mail('your account statictics', f'Username:{i.username} curent balance:{i.current_balance}',
+                  os.environ.get("EMAIL_HOST_USER")[i.email],
                   fail_silently=False)

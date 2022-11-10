@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from rest_framework.routers import DefaultRouter
 
-from categories import urls as categories_urls
 from categories.views import CategoryViewSet
 from transactions.views import TransactionViewSet
 from users import urls as user_urls

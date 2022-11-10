@@ -19,13 +19,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-++iv@n197_0c2x96t52$-8lym0atuduf7j=@+=6k)^@yf$ugfj'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 import os
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.User'
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'rest_framework.authtoken',
     'django.contrib.staticfiles',
-                 ] + MY_APPS
+                    ] + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,10 +144,8 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
-

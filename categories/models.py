@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Category(models.Model):
-    name_of_category = models.CharField(max_length=50, unique=True)
+    owner = models.ForeignKey('users.User', on_delete=models.CASCADE)
+    name_of_category = models.CharField(max_length=50)
     spent_sum = models.IntegerField(default=0)
 
     def __str__(self):
