@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'rest_framework',
     'djoser',
+    'django_celery_beat',
     'rest_framework.authtoken',
     'django.contrib.staticfiles',
                  ] + MY_APPS
@@ -131,9 +132,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+CELERY_TIMEZONE = 'Europe/Minsk'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'urflow43@gmail.com'
+EMAIL_HOST_PASSWORD = 'xkodkpgkhabapgen'
+EMAIL_USE_TLS = True
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+

@@ -1,6 +1,10 @@
 version: "3.9"
 
 services:
+  redis:
+    image: redis
+    restart: always
+
   db:
     image: postgres
     volumes:
@@ -21,4 +25,22 @@ services:
       - .env.dev
     depends_on:
       - db
+  celery:
+    build: .
+    command: celery -A counter worker -l info
+    env_file:
+      - .env.dev
+    volumes:
+      - ./project/:/usr/src/code/
+    depends_on:
+      - redis
+  celery-beats:
+    build: .
+    command: celery -A counter beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file:
+      - .env.dev
+    volumes:
+      - ./project/:/usr/src/code/
+    depends_on:
+      - redis
 
