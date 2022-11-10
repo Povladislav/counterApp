@@ -1,6 +1,7 @@
 from celery import shared_task
-from users.models import User
 from django.core.mail import send_mail
+
+from users.models import User
 
 
 @shared_task
