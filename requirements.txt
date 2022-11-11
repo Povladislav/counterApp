@@ -8,3 +8,4 @@ djoser
 celery
 redis
 django-celery-beat
+drf-yasg

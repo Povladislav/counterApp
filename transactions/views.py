@@ -23,10 +23,15 @@ class TransactionViewSet(ModelViewSet):
                                    description=request.data.get('description', ''))
         sum_to_add = prev_sum + int(request.data['sum'])
         category.spent_sum = sum_to_add
-        category.save()
-        serializer = TransactionSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        return Response(serializer.data)
+        request.user.current_balance -= int(request.data['sum'])
+        if request.user.current_balance >= 0:
+            category.save()
+            request.user.save()
+            serializer = TransactionSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            return Response(serializer.data)
+        else:
+            return Response({"Current user don't have enough balance for this actions"})
 
     def get_permissions(self):
         if self.action in ['update', 'destroy',

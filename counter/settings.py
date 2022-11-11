@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'rest_framework.authtoken',
     'django.contrib.staticfiles',
+    'drf_yasg'
                     ] + MY_APPS
 
 MIDDLEWARE = [
