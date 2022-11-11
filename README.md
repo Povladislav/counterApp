@@ -11,3 +11,30 @@ __Как установить проект__
 git clone https://github.com/Povladislav/counterApp.git
 cd counterApp
 ~~~
+
+Создать и активировать виртуальное окружение:
+
+~~~
+python -m venv venv
+source venv/bin/activate
+~~~
+
+Установить зависимости из файла requirements.txt:
+
+~~~
+pip install -r requirements.txt
+~~~
+
+Выполнить миграции:
+
+~~~
+cd counter
+docker-compose run web python3 manage.py makemigrations
+docker-compose run web migrate
+~~~
+
+Cбилдить контейнер и запустить проект:
+~~~
+docker-compose build
+docker-compose up
+~~~
