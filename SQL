@@ -1,0 +1,3 @@
+1) SELECT DISTINCT  notebooks_brand.title,COUNT(notebooks_notebook.brand_id) FROM notebooks_brand JOIN notebooks_notebook ON notebooks_notebook.brand_id = notebooks_brand.id GROUP BY notebooks_brand.title ORDER BY count DESC;
+
+2) SELECT ROUND(width/5)*5 as width ,ROUND(height/5)*5 as height,ROUND(depth/5)*5 as depth,COUNT(brand_id) FROM notebooks_notebook GROUP BY width,depth,height ORDER BY width;
